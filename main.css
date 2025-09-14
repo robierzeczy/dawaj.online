@@ -132,7 +132,7 @@ html {
   transform: scale(1.05); /* Slightly scale the h1on on hover */
 }
 
-.center-text a {mkdi
+.center-text a {
   color: #41B3AC;
   text-decoration: none;
   transition: color 0.2s ease-in-out;
