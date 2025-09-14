@@ -111,20 +111,16 @@ html {
 }
 
 .center-text {
-  font-size: 20px;
+  display: inline-block; /* zamiast domyślnego block */
   text-align: center;
-  color: white;
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  white-space: nowrap; /* nie zawijaj tekstu */
+  max-width: 100%; /* nie wychodź poza ekran */
   transform: translate(-50%, -50%) scale(0.8);
   opacity: 0;
-  transition: opacity 0.4s ease-in-out, transform 0.5s ease-in-out; /* 1s zamiast 0.3s */
+  transition: opacity 0.4s ease-in-out, transform 0.5s ease-in-out;
   line-height: 30px;
-  pointer-events: none; /* początkowo nieklikalne */
+  pointer-events: none;
   z-index: 10;
-
-  
 }
 
 .center-text a:hover {
