@@ -129,6 +129,8 @@ html {
   z-index: 10;
 
   
+
+  
 }
 
 .center-wrapper {
@@ -137,17 +139,30 @@ html {
   align-items: center; /* wyśrodkowanie w poziomie */
 }
 
-.center-text a:hover {
-  animation: fadeIn 1s ease-in-out; /* Fade-in effect */
-  transform: scale(1.05); /* Slightly scale the h1on on hover */
-}
-
+/* Linki w centrum - efekt znikania i pojawiania się */
 .center-text a {
   color: #41B3AC;
   text-decoration: none;
-  transition: color 0.2s ease-in-out;
-  pointer-events: auto; /* klikalny link */
-    display: inline;      /* w jednej linii */
-    white-space: nowrap;
+  display: inline;
+  pointer-events: auto;
+  transition: transform 0.3s ease; /* transform pozostawiamy */
+}
 
+/* Hover - link znika i pojawia się z powrotem */
+.center-text a:hover {
+  animation: fadeOutIn 0.5s ease forwards;
+  transform: scale(0.98); /* delikatne pomniejszenie */
+}
+
+/* Animacja fade-out i fade-in */
+@keyframes fadeOutIn {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0; /* link znikający w połowie animacji */
+  }
+  100% {
+    opacity: 1; /* powrót do pełnej widoczności */
+  }
 }
