@@ -114,7 +114,7 @@ html {
     display: inline-block; /* zamiast domyślnego block */
   white-space: nowrap;
 
-  font-size: 15px;
+  font-size: 18px;
   text-align: center;
   color: white;
   position: absolute;
