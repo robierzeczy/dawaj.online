@@ -134,17 +134,30 @@ html {
 }
 
 /* Linki w center-text */
+/* Linki w center-text – wariant 2: glow pulse */
 .center-text a {
+  position: relative;
   color: #41B3AC;
   text-decoration: none;
-  pointer-events: auto;
-  transition: transform 0.3s ease;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .center-text a:hover {
-  animation: fadeOutIn 0.5s ease forwards;
-  transform: scale(0.98);
+  color: #6fffe9; /* jaśniejszy kolor na hover */
+  text-shadow: 0 0 10px rgba(111, 255, 233, 0.8),
+               0 0 20px rgba(111, 255, 233, 0.6),
+               0 0 40px rgba(111, 255, 233, 0.4);
+  animation: glow-pulse 0.8s ease-out;
 }
+
+@keyframes glow-pulse {
+  0% { text-shadow: 0 0 0 rgba(111, 255, 233, 0); }
+  50% { text-shadow: 0 0 20px rgba(111, 255, 233, 1),
+                     0 0 40px rgba(111, 255, 233, 0.8); }
+  100% { text-shadow: 0 0 10px rgba(111, 255, 233, 0.5),
+                     0 0 20px rgba(111, 255, 233, 0.3); }
+}
+
 
 @keyframes fadeOutIn {
   0% { opacity: 1; }
