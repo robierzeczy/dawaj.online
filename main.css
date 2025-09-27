@@ -40,19 +40,31 @@ html {
   box-shadow: 0 0 50px 25px rgba(28,58,65,0.6),
               0 0 10px 4px rgba(255,255,255,0.05) inset;
   transform: translate(-50%, -50%) scale(0.001);
-  animation: center-pulse-animation 2.5s infinite; /* bazowa animacja */
+  animation: center-pulse-animation 2.5s infinite;
   z-index: 10;
   cursor: pointer;
   background-image: url("https://www.transparenttextures.com/patterns/noise-1.png");
   background-blend-mode: overlay;
 }
 
-/* Dodajemy drugą animację tylko na hover */
-.center-pulse:hover {
-  animation: center-pulse-animation 2.5s infinite,
-             click-wave 0.6s ease-out forwards;
+.center-pulse::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(111, 255, 233, 0.15);
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0;
+  pointer-events: none;
 }
 
+/* Dodanie klasy do fali przy kliknięciu */
+.center-pulse.pulse-hover::after {
+  animation: click-wave 0.8s ease-out forwards;
+}
 
 @keyframes center-pulse-animation {
   0%   { transform: translate(-50%, -50%) scale(0.001); opacity:1; box-shadow:0 0 50px 25px rgba(28,58,65,0.6),0 0 10px 4px rgba(255,255,255,0.05) inset; }
@@ -60,9 +72,15 @@ html {
   100% { transform: translate(-50%, -50%) scale(1); opacity:1; box-shadow:0 0 50px 25px rgba(28,58,65,0.6),0 0 10px 4px rgba(255,255,255,0.05) inset; }
 }
 
+@keyframes click-wave {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.35; }
+  50% { transform: translate(-50%, -50%) scale(2.5); opacity: 0.18; }
+  100% { transform: translate(-50%, -50%) scale(4); opacity: 0; }
+}
+
 /* Center Text */
 .center-text {
-    display: inline-block;
+  display: inline-block;
   white-space: nowrap;
   max-width: 100%;
   position: absolute;
@@ -74,16 +92,15 @@ html {
   text-align: center;
   line-height: 30px;
   opacity: 0;
-  pointer-events: none; /* domyślnie nieklikalny */
+  pointer-events: none;
   transition: opacity 0.4s ease-in-out, transform 0.5s ease-in-out;
   z-index: 20;
 }
 
-/* Pokazuje tekst po kliknięciu */
 .center-wrapper.show-text .center-text {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
-  pointer-events: auto; /* linki działają */
+  pointer-events: auto;
 }
 
 .click-here {
@@ -91,15 +108,15 @@ html {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 150px;  /* lekko większe niż pulsujące kółko */
-  height: 150px; /* lekko większe niż pulsujące kółko */
+  width: 150px;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;  /* musi być najwyżej */
+  z-index: 9999;
   pointer-events: auto;
   cursor: pointer;
-  background: rgba(0,0,0,0); /* przezroczyste, ale blokuje kliknięcia pod spodem */
+  background: rgba(0,0,0,0);
   color: white;
   font-size: 14px;
   font-weight: 500;
@@ -107,34 +124,14 @@ html {
   text-align: center;
 }
 
-
-
-@keyframes text-pulse {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(1.05); }
-}
-
-/* Hover pulsującego kółka → click-here znika */
-.center-pulse:hover ~ .click-here {
-  opacity: 0 !important;
-}
-
-/* Click → click-here znika na stałe */
+/* Ukrywanie click-here */
+.center-pulse:hover ~ .click-here,
 .center-wrapper.show-text .click-here {
   opacity: 0 !important;
   pointer-events: none;
-  animation: none !important;
-}
-
-/* Wrapper */
-.center-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 /* Linki w center-text */
-/* Linki w center-text – wariant 2: glow pulse */
 .center-text a {
   position: relative;
   color: #41B3AC;
@@ -143,7 +140,7 @@ html {
 }
 
 .center-text a:hover {
-  color: #6fffe9; /* jaśniejszy kolor na hover */
+  color: #6fffe9;
   text-shadow: 0 0 10px rgba(111, 255, 233, 0.8),
                0 0 20px rgba(111, 255, 233, 0.6),
                0 0 40px rgba(111, 255, 233, 0.4);
@@ -158,26 +155,9 @@ html {
                      0 0 20px rgba(111, 255, 233, 0.3); }
 }
 
-
-@keyframes fadeOutIn {
-  0% { opacity: 1; }
-  50% { opacity: 0; }
-  100% { opacity: 1; }
+/* Wrapper */
+.center-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
-
-@keyframes click-wave {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(2);
-    opacity: 0.3;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(4);
-    opacity: 0;
-  }
-}
-
