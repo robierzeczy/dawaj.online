@@ -14,6 +14,11 @@ function showText(e) {
     pulse.classList.remove("pulse-hover");
     void pulse.offsetWidth; // restart animacji
     pulse.classList.add("pulse-hover");
+
+    // Wibracja na telefonie
+    if (navigator.vibrate) {
+        navigator.vibrate(50); // 50ms wibracja
+    }
 }
 
 // Kliknięcie w pulsujące kółko
@@ -39,12 +44,18 @@ document.addEventListener("click", (e) => {
 links.forEach(link => {
     const handleClick = (e) => {
         e.preventDefault();
-        // odpalenie fali
+
+        // Odpalenie fali
         pulse.classList.remove("pulse-hover");
         void pulse.offsetWidth; // restart animacji
         pulse.classList.add("pulse-hover");
-        
-        // opóźnione otwarcie linku po 400ms
+
+        // Wibracja na telefonie
+        if (navigator.vibrate) {
+            navigator.vibrate(30);
+        }
+
+        // Opóźnione otwarcie linku po 500ms
         setTimeout(() => {
             window.open(link.href, link.target || "_self");
         }, 500);
@@ -57,7 +68,20 @@ links.forEach(link => {
         pulse.classList.add("pulse-hover");
     });
 
-    // kliknięcie / dotyk
+    // Kliknięcie / dotyk
     link.addEventListener("click", handleClick);
     link.addEventListener("touchstart", handleClick);
 });
+
+// Opcjonalnie: lekkie pulsowanie pozycji kółka dla mobilki
+function mobilePulseMotion() {
+    if (window.innerWidth <= 480) {
+        const t = Date.now() / 800; // czas
+        pulse.style.transform = `translate(calc(-50% + ${Math.sin(t) * 2}px), calc(-50% + ${Math.cos(t) * 2}px)) scale(1)`;
+        requestAnimationFrame(mobilePulseMotion);
+    } else {
+        pulse.style.transform = "translate(-50%, -50%) scale(1)";
+        requestAnimationFrame(mobilePulseMotion);
+    }
+}
+mobilePulseMotion();
