@@ -130,6 +130,22 @@ html {
   font-weight: 500;
   letter-spacing: 1px;
   text-align: center;
+
+  opacity: 0;                     /* domyślnie ukryte */
+  animation: fadeIn 1s ease forwards 2s, fadePulse 3s ease-in-out infinite 2s;
+  animation-delay: 2s;            /* pojawia się po 2 sekundach */
+}
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes fadePulse {
+  0% { opacity: 0.2; }
+  50% { opacity: 0.5; }
+  100% { opacity: 0.2; }
+}
+.center-wrapper.show-text .click-here {
+  display: none !important;
 }
 
 /* Ukrywanie click-here */
