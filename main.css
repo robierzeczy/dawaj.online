@@ -80,6 +80,7 @@ html {
 
 /* Center Text */
 .center-text {
+  font-family: 'JetBrains Mono', monospace;
   display: inline-block;
   white-space: nowrap;
   max-width: 100%;
