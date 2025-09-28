@@ -240,7 +240,12 @@ footer p span {
     display: block;
 }
 
-.small {
+.craft {
   font-size: 0.75em;
   opacity: 0.8;
   letter-spacing: 1px;
+}
+
+.dawaj {
+  color: white;
+}
