@@ -41,24 +41,25 @@ document.addEventListener("click", (e) => {
 
 // --- click w linki (fala + otwarcie linku) ---
 links.forEach(link => {
-    const handleClick = (e) => {
+    link.addEventListener("click", (e) => {
         e.preventDefault();
         triggerPulse();
 
-        // Otwieramy link natychmiast w nowej karcie (Safari/Brave nie blokują)
-        const newTab = window.open(link.href, link.target || "_blank");
+        // Otwieramy link natychmiast w nowej karcie
+        const newTab = window.open(link.href, "_blank");
         if (newTab) newTab.focus();
-    };
+    });
 
-    link.addEventListener("click", handleClick);
-    link.addEventListener("touchstart", handleClick, { passive: false });
     link.addEventListener("mouseenter", triggerPulse); // efekt fali na hover
 });
 
-// --- Hover/tap na footer → efekt fali ---
+// --- Hover/tap/klik w footer → efekt fali ---
 if (footer) {
     // Hover na desktopie
     footer.addEventListener("mouseenter", triggerPulse);
+
+    // Kliknięcie na desktopie
+    footer.addEventListener("click", triggerPulse);
 
     // Tap na telefonie
     footer.addEventListener("touchstart", (e) => {
