@@ -211,13 +211,5 @@ html {
     height: 100px;
     font-size: 12px;
   }
-
-  /* Dodatkowa przerwa między tekstem a linkiem Instagrama */
-  .center-text small:first-of-type::after {
-    content: "";
-    display: block;
-    height: 8px; /* wysokość przerwy */
-  }
-
   
 }
