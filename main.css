@@ -1,4 +1,4 @@
-/* RESET I PODSTAWOWE */
+
 * {
     margin: 0;
     padding: 0;
@@ -97,7 +97,6 @@ main {
     100% { transform: translate(-50%, -50%) scale(4); opacity: 0; }
 }
 
-/* CENTER TEXT */
 .center-text {
     font-family: 'JetBrains Mono', monospace;
     display: inline-block;
@@ -129,7 +128,6 @@ main {
     100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
 
-/* CLICK HERE */
 .click-here {
     font-family: 'JetBrains Mono', monospace;
     position: absolute;
@@ -184,14 +182,12 @@ main {
     text-shadow: 0 0 20px rgba(111, 255, 233, 0.8), 0 0 40px rgba(111, 255, 233, 0.6);
 }
 
-/* WRAPPER */
 .center-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* RESPONSYWNE DLA TELEFONÓW */
 @media (max-width: 480px) {
     .center-pulse {
         width: 80px;
@@ -224,7 +220,6 @@ main {
     }
 }
 
-/* FOOTER */
 footer {
     font-family: 'JetBrains Mono', monospace;
     position: relative;
@@ -239,5 +234,9 @@ footer {
     border-top: 1px solid rgba(111, 255, 233, 0.15);
     margin-top: 30px;
     cursor: pointer;
-    pointer-events: auto; /* klikalność w Safari i innych przeglądarkach */
+    pointer-events: auto; /* klikalność w Safari i in */
+}
+
+footer p span {
+    display: block;
 }
