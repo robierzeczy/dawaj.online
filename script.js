@@ -3,6 +3,7 @@ const wrapper = document.querySelector(".center-wrapper");
 const clickHere = document.querySelector(".click-here");
 const pulse = document.querySelector(".center-pulse");
 const links = document.querySelectorAll(".center-text a");
+const footer = document.querySelector("footer");
 
 // Funkcja pokazująca center-text + odpala falę
 function showText(e) {
@@ -14,11 +15,13 @@ function showText(e) {
     pulse.classList.remove("pulse-hover");
     void pulse.offsetWidth; // restart animacji
     pulse.classList.add("pulse-hover");
+}
 
-    // Wibracja na telefonie
-    if (navigator.vibrate) {
-        navigator.vibrate(50); // 50ms wibracja
-    }
+// Funkcja odpala falę w kółku
+function triggerPulse() {
+    pulse.classList.remove("pulse-hover");
+    void pulse.offsetWidth; // restart animacji
+    pulse.classList.add("pulse-hover");
 }
 
 // Kliknięcie w pulsujące kółko
@@ -44,44 +47,28 @@ document.addEventListener("click", (e) => {
 links.forEach(link => {
     const handleClick = (e) => {
         e.preventDefault();
-
-        // Odpalenie fali
-        pulse.classList.remove("pulse-hover");
-        void pulse.offsetWidth; // restart animacji
-        pulse.classList.add("pulse-hover");
-
-        // Wibracja na telefonie
-        if (navigator.vibrate) {
-            navigator.vibrate(30);
-        }
-
-        // Opóźnione otwarcie linku po 500ms
+        triggerPulse();
+        
         setTimeout(() => {
             window.open(link.href, link.target || "_self");
         }, 500);
     };
 
-    link.addEventListener("mouseenter", () => {
-        // desktop hover – nadal działa
-        pulse.classList.remove("pulse-hover");
-        void pulse.offsetWidth;
-        pulse.classList.add("pulse-hover");
-    });
-
-    // Kliknięcie / dotyk
+    link.addEventListener("mouseenter", triggerPulse);
     link.addEventListener("click", handleClick);
     link.addEventListener("touchstart", handleClick);
 });
 
-// Opcjonalnie: lekkie pulsowanie pozycji kółka dla mobilki
-function mobilePulseMotion() {
-    if (window.innerWidth <= 480) {
-        const t = Date.now() / 800; // czas
-        pulse.style.transform = `translate(calc(-50% + ${Math.sin(t) * 2}px), calc(-50% + ${Math.cos(t) * 2}px)) scale(1)`;
-        requestAnimationFrame(mobilePulseMotion);
-    } else {
-        pulse.style.transform = "translate(-50%, -50%) scale(1)";
-        requestAnimationFrame(mobilePulseMotion);
-    }
+// --- NOWOŚĆ: Fala ze środka kółka po hover/tap na footer ---
+if (footer) {
+    // Hover na desktopie
+    footer.addEventListener("mouseenter", triggerPulse);
+
+    // Tap na telefonie
+    footer.addEventListener("touchstart", (e) => {
+        e.preventDefault(); // zapobiega scrollowi podczas tap
+        triggerPulse();
+    });
 }
-mobilePulseMotion();
+
+
