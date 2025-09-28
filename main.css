@@ -43,8 +43,6 @@ html {
   cursor: pointer;
   background-image: url("https://www.transparenttextures.com/patterns/noise-1.png");
   background-blend-mode: overlay;
-
-  /* Subtelny blur/glow dla lepszego efektu */
   filter: blur(1px);
 }
 
@@ -104,8 +102,6 @@ html {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
   pointer-events: auto;
-
-  /* Animacja wejścia tekstu */
   animation: fade-slide 0.5s ease forwards;
 }
 
@@ -215,10 +211,13 @@ html {
     height: 100px;
     font-size: 12px;
   }
-}
 
-/* Opcjonalnie: wibracja na dotyk (dodaj do JS)
-pulseButton.addEventListener("touchstart", () => {
-  if (navigator.vibrate) navigator.vibrate(50);
-});
-*/
+  /* Dodatkowa przerwa między tekstem a linkiem Instagrama */
+  .center-text small:first-of-type::after {
+    content: "";
+    display: block;
+    height: 8px; /* wysokość przerwy */
+  }
+
+  
+}
