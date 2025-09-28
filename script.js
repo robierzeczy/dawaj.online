@@ -5,7 +5,7 @@ const pulse = document.querySelector(".center-pulse");
 const links = document.querySelectorAll(".center-text a");
 const footer = document.querySelector("footer");
 
-// --- Funkcja pokazuje center-text + odpala falę ---
+// ---  pokazuje center-text + odpala falę ---
 function showText(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -15,33 +15,33 @@ function showText(e) {
     triggerPulse();
 }
 
-// --- Funkcja odpala falę w kółku ---
+// ---  odpala falę w kółku ---
 function triggerPulse() {
     pulse.classList.remove("pulse-hover");
     void pulse.offsetWidth; // restart animacji
     pulse.classList.add("pulse-hover");
 }
 
-// --- Obsługa kliknięcia w pulsujące kółko ---
+// --- click w pulsujące kółko ---
 if (pulseButton) {
     pulseButton.addEventListener("click", showText);
     pulseButton.addEventListener("touchstart", showText, { passive: false });
 }
 
-// --- Kliknięcie w "dotknij" ---
+// --- click w "dotknij" ---
 if (clickHere) {
     clickHere.addEventListener("click", showText);
     clickHere.addEventListener("touchstart", showText, { passive: false });
 }
 
-// --- Klik poza wrapper → ukryj tekst ---
+// --- click poza wrapper → ukryj tekst ---
 document.addEventListener("click", (e) => {
     if (!wrapper.contains(e.target)) {
         wrapper.classList.remove("show-text");
     }
 });
 
-// --- Efekt fali przy linkach i opóźnienie otwarcia linku ---
+// --- fala przy linkach i opóźnienie otwarcia linku ---
 links.forEach(link => {
     const handleClick = (e) => {
         e.preventDefault();
