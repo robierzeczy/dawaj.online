@@ -5,45 +5,43 @@ const pulse = document.querySelector(".center-pulse");
 const links = document.querySelectorAll(".center-text a");
 const footer = document.querySelector("footer");
 
-// Funkcja pokazująca center-text + odpala falę
+// --- Funkcja pokazuje center-text + odpala falę ---
 function showText(e) {
     e.preventDefault();
     e.stopPropagation();
     wrapper.classList.add("show-text");
 
     // Odpalenie fali przy kliknięciu
-    pulse.classList.remove("pulse-hover");
-    void pulse.offsetWidth; // restart animacji
-    pulse.classList.add("pulse-hover");
+    triggerPulse();
 }
 
-// Funkcja odpala falę w kółku
+// --- Funkcja odpala falę w kółku ---
 function triggerPulse() {
     pulse.classList.remove("pulse-hover");
     void pulse.offsetWidth; // restart animacji
     pulse.classList.add("pulse-hover");
 }
 
-// Kliknięcie w pulsujące kółko
+// --- Obsługa kliknięcia w pulsujące kółko ---
 if (pulseButton) {
     pulseButton.addEventListener("click", showText);
-    pulseButton.addEventListener("touchstart", showText);
+    pulseButton.addEventListener("touchstart", showText, { passive: false });
 }
 
-// Kliknięcie w "click here"
+// --- Kliknięcie w "dotknij" ---
 if (clickHere) {
     clickHere.addEventListener("click", showText);
-    clickHere.addEventListener("touchstart", showText);
+    clickHere.addEventListener("touchstart", showText, { passive: false });
 }
 
-// Klik poza wrapper → ukryj tekst
+// --- Klik poza wrapper → ukryj tekst ---
 document.addEventListener("click", (e) => {
     if (!wrapper.contains(e.target)) {
         wrapper.classList.remove("show-text");
     }
 });
 
-// Efekt fali przy linkach i opóźnienie otwarcia linku
+// --- Efekt fali przy linkach i opóźnienie otwarcia linku ---
 links.forEach(link => {
     const handleClick = (e) => {
         e.preventDefault();
@@ -56,19 +54,17 @@ links.forEach(link => {
 
     link.addEventListener("mouseenter", triggerPulse);
     link.addEventListener("click", handleClick);
-    link.addEventListener("touchstart", handleClick);
+    link.addEventListener("touchstart", handleClick, { passive: false });
 });
 
-// --- NOWOŚĆ: Fala ze środka kółka po hover/tap na footer ---
+// --- Hover/tap na footer → efekt fali ---
 if (footer) {
     // Hover na desktopie
     footer.addEventListener("mouseenter", triggerPulse);
 
     // Tap na telefonie
     footer.addEventListener("touchstart", (e) => {
-        e.preventDefault(); // zapobiega scrollowi podczas tap
+        e.preventDefault();
         triggerPulse();
-    });
+    }, { passive: false });
 }
-
-
