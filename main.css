@@ -224,6 +224,8 @@ main {
 
 /* FOOTER */
 footer {
+        font-family: 'JetBrains Mono', monospace;
+
     position: relative;
     z-index: 5;
     text-align: center;
