@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
 
 html {
@@ -161,4 +160,53 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* RESPONSYWNE DLA TELEFONÓW */
+@media (max-width: 480px) {
+  /* Zmniejszenie rozmiaru pulsującego kółka */
+  .center-pulse {
+    width: 80px;
+    height: 80px;
+    box-shadow: 0 0 30px 15px rgba(28,58,65,0.8),
+                0 0 5px 2px rgba(255,255,255,0.1) inset;
+  }
+
+  .center-pulse::after {
+    width: 80px;
+    height: 80px;
+    background: rgba(111, 255, 233, 0.25); /* mocniejsza fala na mobilu */
+  }
+
+  /* Animacja pulsowania tła dostosowana do telefonu */
+  @keyframes center-pulse-animation {
+    0%   { transform: translate(-50%, -50%) scale(0.001); opacity:1; box-shadow:0 0 30px 15px rgba(28,58,65,0.6),0 0 5px 2px rgba(255,255,255,0.05) inset; }
+    50%  { transform: translate(-50%, -50%) scale(1.5); opacity:0.6; box-shadow:0 0 90px 45px rgba(28,58,65,0.8),0 0 15px 7px rgba(255,255,255,0.15) inset; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity:1; box-shadow:0 0 30px 15px rgba(28,58,65,0.6),0 0 5px 2px rgba(255,255,255,0.05) inset; }
+  }
+
+  /* Animacja fali przy kliknięciu nieco szybsza na telefonie */
+  .center-pulse.pulse-hover::after {
+    animation: click-wave 0.6s ease-out forwards;
+  }
+
+  /* Dostosowanie center-text na telefon */
+  .center-text {
+    font-size: 16px;
+    line-height: 24px;
+    max-width: 90%;
+  }
+
+  .center-text a {
+    display: block;
+    margin: 6px 0;
+    font-size: 16px;
+  }
+
+  /* Click-here mniejsze */
+  .click-here {
+    width: 100px;
+    height: 100px;
+    font-size: 12px;
+  }
 }
