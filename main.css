@@ -227,11 +227,10 @@ footer {
     text-align: center;
     padding: 20px 0;
     color: #6fffe9;
-    font-weight: 600;
+    font-weight: 200;
     text-shadow: 
         0 0 3px rgba(111, 255, 233, 0.3),
         0 0 6px rgba(111, 255, 233, 0.2);
-    border-top: 1px solid rgba(111, 255, 233, 0.15);
     margin-top: 30px;
     cursor: pointer;
     pointer-events: auto; /* klikalność w Safari i in */
