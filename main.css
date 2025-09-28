@@ -148,7 +148,7 @@ main {
     font-weight: 500;
     letter-spacing: 1px;
     text-align: center;
-    opacity: 0;
+    opacity: 1;
     animation: fadeIn 1s ease forwards 7s, fadePulse 4s ease-in-out infinite 2s;
 }
 
