@@ -3,6 +3,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'JetBrains Mono', monospace;
+
 }
 
 html {
@@ -45,7 +47,7 @@ main {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background: #1c3a41; /* całkowicie ciemny środek */
+    background: #1c3a41; /* ciemny środek */
     box-shadow: 
         0 0 60px 30px rgba(111,255,233,0.7), 
         0 0 15px 5px rgba(111,255,233,0.3) inset;
@@ -67,7 +69,7 @@ main {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background: rgba(111, 255, 233, 0.6); /* jasna fluorescencyjna poświata */
+    background: rgba(111, 255, 233, 0.6);
     transform: translate(-50%, -50%) scale(1);
     opacity: 0;
     pointer-events: none;
@@ -118,7 +120,7 @@ main {
 .center-wrapper.show-text .center-text {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
-    pointer-events: auto;
+    pointer-events: auto; /* konieczne dla Safari */
     animation: fade-slide 0.5s ease forwards;
 }
 
@@ -167,14 +169,14 @@ main {
 
 /* LINKI W CENTER-TEXT */
 .center-text a {
-    color: #6fffe9; /* główny kolor linku */
+    color: #6fffe9; 
     text-decoration: none;
     text-shadow: 
-        0 0 1px #0a0a0a,  /* ciemny cienki kontur */
-        0 0 1px #0a0a0a;  /* powtórzenie dla wzmocnienia efektu */
+        0 0 1px #0a0a0a, 
+        0 0 1px #0a0a0a;
+    pointer-events: auto; /* klikalność w Safari */
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
-
 
 .center-text a:hover,
 .center-text a:active {
@@ -194,7 +196,7 @@ main {
     .center-pulse {
         width: 80px;
         height: 80px;
-        background: #1c3a41; /* ciemny środek */
+        background: #1c3a41;
         box-shadow: 0 0 60px 30px rgba(111,255,233,0.7), 0 0 15px 5px rgba(111,255,233,0.3) inset;
     }
     .center-pulse::after {
@@ -224,8 +226,7 @@ main {
 
 /* FOOTER */
 footer {
-        font-family: 'JetBrains Mono', monospace;
-
+    font-family: 'JetBrains Mono', monospace;
     position: relative;
     z-index: 5;
     text-align: center;
@@ -238,4 +239,5 @@ footer {
     border-top: 1px solid rgba(111, 255, 233, 0.15);
     margin-top: 30px;
     cursor: pointer;
+    pointer-events: auto; /* klikalność w Safari i innych przeglądarkach */
 }
